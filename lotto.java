@@ -52,7 +52,40 @@
 //실제로 사용되는 로또 순위의 결정 방식과는 약간 다르지만, 이 문제에서는 지문에 명시된 대로 로또 순위를 결정하도록 합니다.  ↩
 public class lotto {
 
-	public lotto() {
+	static int[] lottos = {1,2,3,4,5,6}; 
+	static int[] win_nums = {7,8,9,10,11,12};
+
+	public static int[] test(int[] lottos, int[] win_nums) {
+		 int[] answer = {7, 7};
+
+	        for (int i=0; i < lottos.length; i++) {
+	            if (lottos[i] == 0) {
+	                answer[0] -= 1;
+	                continue;
+	            }
+
+
+	            for (int j = 0; j < win_nums.length; j++) {
+	                if (lottos[i] == win_nums[j]) {
+	                    answer[0] -= 1;
+	                    answer[1] -= 1;
+	                    break;
+	                }
+	            }
+	        }
+
+	        if (answer[1]== 7) { 
+	        	answer[1]=6;
+	        	if(answer[0]== 7){
+	        		answer[0]=6;
+	        	}
+	        }
+
+	        return answer;
 	}
-	
+	public static void main(String[] args) {
+		int[] result = test(lottos, win_nums);
+		System.out.println(result[0]);
+		System.out.println(result[1]);
+	}
 }
